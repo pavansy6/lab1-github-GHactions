@@ -1,0 +1,21 @@
+name: Student Note Update Handler
+
+on:
+  push:
+    paths:
+      - 'student_note.md'
+
+jobs:
+  print-info:
+    runs-on: ubuntu-latest
+    env:
+      STUDENT_USERNAME: ${{ github.actor }}
+      REPO_NAME: ${{ github.repository }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print repository and student username
+        run: |
+          echo "Repository Name: $REPO_NAME"
+          echo "Student Username: $STUDENT_USERNAME"
